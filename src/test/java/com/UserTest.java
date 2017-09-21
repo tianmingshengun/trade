@@ -24,7 +24,8 @@ public class UserTest extends BaseJunitUtil {
 	@Transactional//防止测试数据，污染数据库
 	public void save(){
 		User user=new User();
-		//user.setId("110");
+		
+		//主键生成器声明之后，无需再设置主键，设也不管用
 		user.setName("ceshi");
 		service.saveUser(user);
 	}
