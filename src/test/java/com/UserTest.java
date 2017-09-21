@@ -25,7 +25,7 @@ public class UserTest extends BaseJunitUtil {
 	public void save(){
 		User user=new User();
 		
-		//主键生成器声明之后
+		//主键生成器声明之后，无需在设置主键，及时设置也没什么影响
 		user.setName("ceshi");
 		service.saveUser(user);
 	}
