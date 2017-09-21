@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/tx   
+                           http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+">
+<!--扫描@service等注解 -->
+<context:component-scan base-package="" use-default-filters="false">
+     <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan>
+<!-- 加载MySQL配置文件 -->
+<context:property-placeholder location="mysql.properties"/>
+<!-- 创建数据连接池 -->
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+      <property name="driverClassName" value="${driverClassName}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="maxIdle" value="20"></property>
+</bean>
+<!--建立session工厂 -->
+<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+   <property name="dataSource" ref="dataSource"></property>
+   <property name="mapperLocations" value="classpath*:sqlmap/.xml"></property>
+</bean>
+<!--扫描mapper接口 -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+  <property name="basePackage" value=""></property>
+</bean>
+<!--配置mybatis基类用（可选） -->
+<bean id="SqlSession"  class="org.mybatis.spring.SqlSessionTemplate.class">
+    <!-- 使用第一个构造器，并引入sessionFactory -->
+    <constructor-arg index="0" ref="sqlSessionFactory" />  
+</bean>
+<!-- 配置事务管理 -->
+<bean id="txManager" class="org.mybatis.spring.transaction.SpringManagedTransaction">
+   <property name="dataSource" ref="dataSource"></property>
+</bean>
+<!-- 启用事务注解 -->
+<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
+</beans>

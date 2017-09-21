@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+   <!--定义缓存对象存放位置  -->
+   <diskStore path="D:/MyCoche" />
+   <!-- 设置缓存的默认配置 -->
+   <defaultCache   
+      <!--缓存的最大个数  -->
+      maxElementsInMemory="1000"
+      <!--缓存过期策略设置，即对象是否永久有效，一旦设置，timeout将不起作用  -->
+      eternal="false"
+      <!--在过期策略为FALSE的情况下，对象失效前，允许闲置的时间，可选，默认为零，单位：秒  -->
+      timeToIdleSeconds="120"
+      <!-- 对象失效前，允许存活的时间，单位：秒 -->
+      timeToLiveSeconds="120"
+      <!--当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中 --> 
+      overflowToDisk="true"
+      <!-- 硬盘缓存最大个数 -->
+      maxElementsOnDisk="10000"
+      <!--当jvm结束时是否持久化对象，默认值false -->
+      diskPersistent="false"
+      <!--指定专门用于清除过期对象的监听线程的轮询时间,默认值：120秒 -->
+      diskExpiryThreadIntervalSeconds="120"
+      </defaultCache>
+      <!-- 指定具体的命名cache，待定，需测试 -->
+</ehcache>
