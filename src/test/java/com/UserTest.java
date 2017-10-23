@@ -2,6 +2,7 @@ package com;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +16,7 @@ import com.trade.entity.User;
 import com.trade.service.UserService;
 public class UserTest extends BaseJunitUtil {
       
-	
+	Logger log=Logger.getLogger(UserTest.class);
 	
 	@Autowired
 	UserService service;
@@ -28,6 +29,7 @@ public class UserTest extends BaseJunitUtil {
 		//主键生成器声明之后，无需在设置主键，及时设置也没什么影响
 		user.setName("ceshi");
 		service.saveUser(user);
+		log.info("哈哈，this is me");
 	}
       
 }
