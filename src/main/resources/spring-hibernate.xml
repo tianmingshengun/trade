@@ -42,14 +42,14 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<!-- 开启二级缓存 ,默认是关闭的-->
-				<!-- 
+				<!-- 开启二级缓存 ,默认是关闭的,已用redis替换该组件
+				
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
-				配置二级缓存提供商
+				配置二级缓存提供商  
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
-			          加载ehcache配置文件 
-			    <prop key="hibernate.net.sf.ehcache.configurationResourceName">classpath:ehcache.xml</prop>
-			     -->
+			         加载ehcache配置文件   
+			    <prop key="hibernate.net.sf.ehcache.configurationResourceName">classpath:ehcache.xml</prop>    -->
+			  
 			</props>
 		</property>
 	</bean>

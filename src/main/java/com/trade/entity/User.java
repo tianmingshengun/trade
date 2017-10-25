@@ -24,8 +24,8 @@ public class User {
 	private String name;
 	
 	@Id
-	@GeneratedValue(generator="MyGenerator")
 	@GenericGenerator(name="MyGenerator",strategy="uuid")
+	@GeneratedValue(generator="MyGenerator")	
 	@Column(name="id")
 	public String getId() {
 		return id;

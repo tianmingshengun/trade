@@ -50,6 +50,6 @@
  <!-- 国际化配置，定时任务 -->
  <!-- 配置统一异常处理 -->
 <bean class="com.exception.MyExceptionResolver"></bean> 
-<!-- 加载资源文件 -->
-	<import resource="spring-redis.xml"/>
+<!-- 导入资源配置文件 -->
+<import resource="spring-redis.xml"/>
 </beans>

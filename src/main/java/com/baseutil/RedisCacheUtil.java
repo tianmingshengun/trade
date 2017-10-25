@@ -27,6 +27,7 @@ public class RedisCacheUtil {
 	public void put(String key, String value) {
 		if (key != null && "".equals(key) == false) {
 			redisTemplate.opsForHash().put(key, key, value);
+			
 		}
 	}
 
@@ -70,5 +71,11 @@ public class RedisCacheUtil {
 			return null;
 		}
    }
-   
+   /**
+    * 删除某个key的数据
+    * @param key
+    */
+   public void delete(String key){
+	   redisTemplate.opsForHash().delete(key, key);
+   }
 }

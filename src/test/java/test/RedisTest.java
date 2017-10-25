@@ -50,9 +50,12 @@ public class RedisTest extends BaseJunitUtil {
 		user.setId("dd");//该处需要进行测试，看看策略生成器是否有用
 		user.setName("zheshime");
 		redisCacheUtil.put("user",user);
-		
+		redisCacheUtil.delete("user");
 		User user1=redisCacheUtil.get("user",User.class);
-		System.out.println("id: "+user1.getId()+"  name:"+user1.getName());
+		if(user1 !=null){
+			System.out.println("id: "+user1.getId()+"  name:"+user1.getName());
+
+		}
 		
 		//list处理
 		List<String> list=new ArrayList<String>();
