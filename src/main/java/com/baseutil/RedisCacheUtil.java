@@ -12,12 +12,12 @@ import com.google.gson.Gson;
  * @author admin
  *
  */
-@Component("redisCacheUtil")
+@Component
 public class RedisCacheUtil {
 
 	@Autowired
 	private StringRedisTemplate redisTemplate;// redis操作模板
-
+	                          
 	/**
 	 * 添加
 	 * 

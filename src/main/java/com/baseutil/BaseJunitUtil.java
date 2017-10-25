@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring-hibernate.xml"})
+@ContextConfiguration({"classpath:springmvc.xml"})
 public abstract class BaseJunitUtil {
 	    @Before
 		public void start(){

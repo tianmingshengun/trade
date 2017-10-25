@@ -27,8 +27,7 @@ public class RedisTest extends BaseJunitUtil {
    
 	@Test
 	public void test() {
-       
-		//字符串处理
+       //字符串处理
 		redisCacheUtil.put("key1","i am zifuchuan");
 		System.out.println("这是一个字符串    "+redisCacheUtil.get("key1"));
 	

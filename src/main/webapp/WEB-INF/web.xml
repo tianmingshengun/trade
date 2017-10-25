@@ -10,7 +10,7 @@
   <context-param>
        <param-name>contextConfigLocation</param-name>
        <!-- 可以加载多个，用逗号隔开 -->
-       <param-value>classpath:spring-hibernate.xml,classpath:spring-cxf.xml,classpath:spring-redis.xml
+       <param-value>classpath:spring-hibernate.xml,classpath:spring-cxf.xml
        </param-value>
   </context-param> 
   <!-- 配置监听器 -->
