@@ -10,21 +10,21 @@
 >
 
 <!--进行组件扫描 -->
-<context:component-scan base-package="com.baseutil.*"/>
+<context:component-scan base-package="com.baseutil.**"/>
 <!-- 加载redis配置文件 -->
 <context:property-placeholder location="classpath:/redis.properties" />
 <!--配置redis数据库连接池  -->
 <bean id="jedisConfig" class="redis.clients.jedis.JedisPoolConfig">
-    <property name="maxActive" value="${redis_max_active}"></property>
-    <property name="maxIdle" value="${redis_max_idle}" ></property>
-    <property name="maxWait" value="${redis_max_wait}"></property>
-    <property name="testOnBorrow" value="${redis_test_on_borrow}"></property>
+    <property name="maxTotal" value="${maxTotal}"></property>
+    <property name="maxIdle" value="${maxIdle}" ></property>
+    <property name="maxWaitMillis" value="${maxWaitMillis}"></property>
+    <property name="testOnBorrow" value="${testOnBorrow}"></property>
 </bean>
 <!--redis连接工厂类 -->
 <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-     <property name="hostname" value="${redis_address}"></property>
-     <property name="port" value="${redis_port}"></property>
-     <property name="password" value="${redis_password}"></property>
+     <property name="hostName" value="${address}"></property>
+     <property name="port" value="${port}"></property>
+     <property name="password" value="${password}"></property>
      <property name="poolConfig" ref="jedisConfig"></property>
 </bean>
 <!-- redis操作模板 ,key_value均采用序列化操作，以方便存储对象-->
