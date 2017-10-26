@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd"                         
 >
-
+<!-- 配置文件的方式 -->
 <!-- 任务类 -->
 <bean id="MyJob" class="com.job.MyJob"></bean>
 <!-- 声明调度员 -->
