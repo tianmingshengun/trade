@@ -52,4 +52,5 @@
 <bean class="com.exception.MyExceptionResolver"></bean> 
 <!-- 导入资源配置文件 -->
 <import resource="spring-redis.xml"/>
+<import resource="spring-quartz.xml"/>
 </beans>

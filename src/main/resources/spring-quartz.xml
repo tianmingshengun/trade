@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd"                         
+>
+
+<!-- 任务类 -->
+<bean id="MyJob" class="com.job.MyJob"></bean>
+<!-- 声明调度员 -->
+<bean id="jobDetail"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+         <property name="targetObject" ref="MyJob"></property>
+         <property name="targetMethod" value="execute"></property>
+         <property name="concurrent" value="false"></property>
+</bean>
+
+<!-- 声明参数触发器,相当于给调度员设置参数 -->
+<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+     <property name="jobDetail" ref="jobDetail"></property>
+     <property  name="repeatInterval" value="2000"></property>
+</bean>
+
+<!-- 调度容器 ,应用启动时自动执行-->
+<bean id="schedulerFactory" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+      <property name="triggers">
+          <list>
+              <ref bean="simpleTrigger"/>
+          </list>
+      </property>
+</bean>
+</beans>
