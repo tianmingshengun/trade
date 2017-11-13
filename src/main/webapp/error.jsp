@@ -9,4 +9,19 @@
 <body>
 hahhah
 </body>
+<script type="text/javascript">
+//获取链接参数
+function getParams(key){
+	    var url = location.search.replace(/^\?/,'').split('&');
+	    var paramsObj = {};
+	    for(var i = 0, iLen = url.length; i < iLen; i++){
+	        var param = url[i].split('=');
+	        paramsObj[param[0]] = param[1];
+	    }
+	    if(key){
+	        return paramsObj[key] || '';
+	    }
+	    return paramsObj;
+	}
+</script>
 </html>
