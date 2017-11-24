@@ -1,6 +1,6 @@
 package test;
 
-public class Test extends Box<String> {
+public class Test {
 
 	ThreadLocal<Long> longLocal = new ThreadLocal<Long>();
 	ThreadLocal<String> stringLocal = new ThreadLocal<String>();
@@ -26,13 +26,13 @@ public class Test extends Box<String> {
 		System.out.println(test.getLong());
 		System.out.println(test.getString());
 
-		Thread thread1 = new Thread() {
+	Thread thread1 = new Thread() {
 			public void run() {
 				test.set();
-				System.out.println(test.getLong());
-				System.out.println(test.getString());
+				System.out.println("thread1 "+test.getLong());
+				System.out.println("thread1 "+test.getString());
 			};
-		};
+		};	
 		thread1.start();
 		thread1.join();
 

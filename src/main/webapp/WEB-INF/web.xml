@@ -68,7 +68,7 @@
 	</session-config>
 	<!--设置错误页 -->
 	<error-page>
-	    <error-code>500</error-code>
+	    <error-code>404</error-code>
 	    <location>/error.jsp</location>
 	</error-page>
 	<!-- 设置默认首页 -->

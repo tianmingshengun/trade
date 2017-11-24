@@ -11,22 +11,29 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
-@RequestMapping(value="Ce")
+@RequestMapping(value="/test")
 public class CeShiController {
      
 	 Logger log=Logger.getLogger(CeShiController.class);
 	   /**
 	    * 测试用
 	    */
-	@RequestMapping(value="ceshi.do")
+	@RequestMapping(value="/ceshi.do")
 	public ModelAndView ceshi(ModelAndView view) throws Exception{
 		if(true){
 		
 			
-				//	int n=1/0;
+			    try {
+					int n=1/0;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				
-				System.out.println("*******************");
-			  log.info("大神啊hahahhah+++++++++");
+				}finally{
+					System.out.println("*******************");
+				    log.info("大神啊hahahhah+++++++++");
+				}
+				
 		}
 		return view;
 	}
