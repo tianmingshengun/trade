@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:con="http://www.springframework.org/schema/context" 
+       xmlns:task="http://www.springframework.org/schema/task"       
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans.xsd"                         
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                           http://www.springframework.org/schema/task  
+	                       http://www.springframework.org/schema/task/spring-task-4.3.xsd  
+                           "                         
 >
 <!-- 配置文件的方式 -->
 <!-- 任务类 -->
-<bean id="MyJob" class="com.job.MyJob"></bean>
-<!-- 声明调度员 -->
-<bean id="jobDetail"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-         <property name="targetObject" ref="MyJob"></property>
-         <property name="targetMethod" value="execute"></property>
-         <property name="concurrent" value="false"></property>
-</bean>
+<!--  >bean id="MyJob" class="com.job.MyJob"></bean-->
+<task:annotation-driven/>  
+<con:component-scan base-package="com.job.**"></con:component-scan>
 
-<!-- 声明参数触发器,相当于给调度员设置参数 -->
-<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
-     <property name="jobDetail" ref="jobDetail"></property>
-     <property  name="repeatInterval" value="2000"></property>
-</bean>
 
-<!-- 调度容器 ,应用启动时自动执行-->
-<bean id="schedulerFactory" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-      <property name="triggers">
-          <list>
-              <ref bean="simpleTrigger"/>
-          </list>
-      </property>
-</bean>
 </beans>
