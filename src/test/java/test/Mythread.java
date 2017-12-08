@@ -18,7 +18,7 @@ public class Mythread extends Thread {
            try {
 			System.out.println("线程"+Thread.currentThread().getName()+"进入睡眠状态");
 		    Thread.currentThread().sleep(10000);
-		   
+		    
            } catch (Exception e) {
 			// TODO: handle exception
 		}
