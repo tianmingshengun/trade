@@ -51,7 +51,7 @@
  <!-- 配置统一异常处理 -->
 <bean class="com.exception.MyExceptionResolver"></bean> 
 <!-- 导入资源配置文件 -->
-<import resource="spring-redis.xml"/>
-<!-- <import resource="spring-quartz.xml"/>扫描任务 -->
+<!--import resource="spring-redis.xml"/-->
+<import resource="spring-propeties.xml"/>
 
 </beans>
