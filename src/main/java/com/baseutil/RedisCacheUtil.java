@@ -12,10 +12,10 @@ import com.google.gson.Gson;
  * @author admin
  *
  */
-@Component
+//@Component
 public class RedisCacheUtil {
 
-	@Autowired
+	//@Autowired
 	private StringRedisTemplate redisTemplate;// redis操作模板
 	                          
 	/**
@@ -77,5 +77,12 @@ public class RedisCacheUtil {
     */
    public void delete(String key){
 	   redisTemplate.opsForHash().delete(key, key);
+   }
+   /**
+    * 判断键是否存在
+    * @param key
+    */
+   public void isExist(String key){
+	   redisTemplate.opsForHash().hasKey(key, key);
    }
 }

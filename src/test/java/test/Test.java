@@ -26,7 +26,16 @@ public class Test {
 		System.out.println(test.getLong());
 		System.out.println(test.getString());
 
-	Thread thread1 = new Thread() {
+	
+		Runnable run=new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		Thread thread1 = new Thread() {
 			public void run() {
 				test.set();
 				System.out.println("thread1 "+test.getLong());
