@@ -17,7 +17,7 @@
 <!--启用扫描组件，将指定包下的类注册为相应的bean,例如@controller，@service
     该文件为springmvc的配置文件，只扫描controller,全部扫描会影响事务
   -->
-<con:component-scan base-package="com.trade.*" use-default-filters="false">
+<con:component-scan base-package="com.trade.*" >
 		<con:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 </con:component-scan>
 <!-- 静态资源配置，例如js,css,images... -->
@@ -52,6 +52,6 @@
 <bean class="com.exception.MyExceptionResolver"></bean> 
 <!-- 导入资源配置文件 -->
 <!--import resource="spring-redis.xml"/-->
-<import resource="spring-propeties.xml"/>
+<!--import resource="spring-propeties.xml"/-->
 
 </beans>
