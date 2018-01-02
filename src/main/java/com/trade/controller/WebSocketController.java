@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.socket.TextMessage;
 
-import com.websocket.SpringWebSocketHandler;
+import com.websocket.WebSocketHandler;
 
 /**
  * websocket控制器
@@ -25,8 +25,8 @@ import com.websocket.SpringWebSocketHandler;
 public class WebSocketController {
 
 	@Bean // 这个注解会从Spring容器拿出Bean
-	public SpringWebSocketHandler infoHandler() {
-		return new SpringWebSocketHandler();
+	public WebSocketHandler infoHandler() {
+		return new WebSocketHandler();
 	}
 
 	@RequestMapping(value="login.do")
@@ -35,15 +35,7 @@ public class WebSocketController {
 		System.out.println(username + "登录");
 		HttpSession session = request.getSession(false);
 		session.setAttribute("SESSION_USERNAME", username);
-		// response.sendRedirect("/quicksand/jsp/websocket.jsp");
-		return new ModelAndView("send");
+		return new ModelAndView("sendwebsocket");
 	}
 
-	@RequestMapping(value="send.do")
-	@ResponseBody
-	public String send(HttpServletRequest request) {
-		String username = request.getParameter("username");
-		infoHandler().sendMessageToUser(username, new TextMessage("你好，测试！！！！"));
-		return null;
-	}
 }

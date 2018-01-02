@@ -20,8 +20,10 @@
 <con:component-scan base-package="com.trade.*" >
 		<con:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 </con:component-scan>
-<!-- 静态资源配置，例如js,css,images... -->
-<!-- <mvc:resources location="" mapping=""></mvc:resources>-->
+<con:component-scan base-package="com.websocket.**"></con:component-scan>
+
+<!--当前端控制器拦截所有请求时，启用该静态资源配置，例如js,css,images... -->
+<!--<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>  -->
 <!-- 配置拦截器 ，目的在于进行细粒度的请求控制,拦截器位于具体的controller前后，具体功能待定 -->
 <!-- <mvc:interceptors>
    <mvc:interceptor>
