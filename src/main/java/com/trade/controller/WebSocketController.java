@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.socket.TextMessage;
 
+import com.alibaba.fastjson.JSONObject;
 import com.websocket.WebSocketHandler;
 
 /**
@@ -25,7 +26,7 @@ import com.websocket.WebSocketHandler;
 public class WebSocketController {
 
 	@Bean // 这个注解会从Spring容器拿出Bean
-	public WebSocketHandler infoHandler() {
+	public WebSocketHandler handler() {
 		return new WebSocketHandler();
 	}
 
@@ -34,8 +35,18 @@ public class WebSocketController {
 		String username = request.getParameter("username");
 		System.out.println(username + "登录");
 		HttpSession session = request.getSession(false);
-		session.setAttribute("SESSION_USERNAME", username);
+		if(session !=null){
+			session.setAttribute("username", username);
+		}		
 		return new ModelAndView("sendwebsocket");
 	}
-
+    @RequestMapping(value="sendMessage.do")
+    @ResponseBody
+	public JSONObject sendMessage(String username,TextMessage message){
+		JSONObject result=new JSONObject();
+		//需优化，在实际开发中，这种写法不是太严谨
+		handler().sendMessageToUser(username, message);
+		result.put("code", 200);
+		return result;
+	}
 }

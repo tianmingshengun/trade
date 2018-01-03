@@ -26,11 +26,9 @@ public class WebSocketHandlerInterceptor implements HandshakeInterceptor  {
             HttpSession session = servletRequest.getServletRequest().getSession(false);
             if (session != null) {
                 //使用userName区分WebSocketHandler，以便定向发送消息
-                String userName = (String) session.getAttribute("SESSION_USERNAME");
-                if (userName==null) {
-                    userName="default-system";
-                }
-                attributes.put("WEBSOCKET_USERNAME",userName);
+                String userName = (String) session.getAttribute("username");
+                //该map专门用于记录链接用户情况，为下一步的websockethandler做准备，websession.getAttributes()返回的map，即为该map
+                attributes.put("username",userName);
             }
         }
         return true;
