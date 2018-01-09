@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RedisInterceptor implements MethodInterceptor {
  
 	//@Autowired
-	private RedisCacheUtil redisCacheUtil;
+	private RedisUtil redisCacheUtil;
 	
 	private List<String> serviceList;  //不拦截的service列表
 	private List<String> methodList;//不拦截的方法名称列表

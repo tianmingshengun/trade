@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 
 /**
- * redis缓存工具类
+ * redis工具类
  * 
  * @author admin
  *

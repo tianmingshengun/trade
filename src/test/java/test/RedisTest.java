@@ -15,7 +15,7 @@ import com.baseutil.BaseJunitUtil;
  * @author admin
  *
  */
-import com.baseutil.RedisCacheUtil;
+import com.baseutil.RedisUtil;
 import com.trade.entity.User;
 @Component
 public class RedisTest extends BaseJunitUtil {
@@ -23,7 +23,7 @@ public class RedisTest extends BaseJunitUtil {
 	 
 	
 	@Autowired
-	RedisCacheUtil redisCacheUtil;
+	RedisUtil redisCacheUtil;
    
 	@Test
 	public void test() {
