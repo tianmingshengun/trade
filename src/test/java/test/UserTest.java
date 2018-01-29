@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
@@ -7,6 +9,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baseutil.BaseJunitUtil;
+import com.datadictionary.entity.Item;
+import com.datadictionary.service.ItemService;
 /**
  * user数据测试
  * @author admin
@@ -20,9 +24,11 @@ public class UserTest extends BaseJunitUtil {
 	
 	@Autowired
 	UserService service;
+	@Autowired
+	ItemService itemService;
 	
-	@Test
-	@Transactional//防止测试数据，污染数据库
+	//@Test
+	//@Transactional//防止测试数据，污染数据库
 	public void save(){
 		User user=new User();
 		
@@ -31,5 +37,13 @@ public class UserTest extends BaseJunitUtil {
 		service.saveUser(user);
 		log.info("哈哈，this is me");
 	}
-      
+    
+	@Test
+	public void select(){
+	List<Item> list=itemService.getItemList(null);
+	for (Item item : list) {
+		System.out.println("加上汉字用作区别："+item.getName());
+	}
+	
+	}
 }

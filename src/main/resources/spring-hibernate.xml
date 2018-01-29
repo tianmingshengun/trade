@@ -14,7 +14,7 @@
 	
 	<!-- 扫描@service等组件 -->
 	<context:component-scan base-package="com.trade.*"/>
-	
+	<context:component-scan base-package="com.datadictionary.*"></context:component-scan>
 	<!-- 加载MySQL配置文件，这个地方要用properties工具类测试一下 -->
 	<context:property-placeholder location="classpath:/mysql.properties"/>
 
@@ -32,9 +32,9 @@
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<!-- 加载数据源 -->
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="packagesToScan">
+		<property name="packagesToScan"><!-- 扫描实体类 -->
 			<list>
-				<value>com.trade</value>
+				<value>com</value>				
 			</list>
 		</property>
 		<property name="hibernateProperties">

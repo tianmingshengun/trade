@@ -49,7 +49,7 @@ public class HibernateBaseDao<T> {
 	 * @return
 	 */
 	public Session getSession() {
-
+    //    sessionFactory.get
 		return sessionFactory.getCurrentSession();
 	}
 
@@ -110,32 +110,23 @@ public class HibernateBaseDao<T> {
 	}
     
 	/**
-     * 创建Query,仅支持单表查询(目测不需要转换，需要测试一下)
-     * @param sql
-     * @return
-     */
-	public Query<T> createQuery(String sql){
-		
-		return getSession().createNativeQuery(sql, entityClass);
-	}
-	/**
-	 * 创建SQLQuery,支持多表查询
-	 * @param queryString
-	 * @param obj 参数数组
+	 * 创建query，可用于多表连接查询
+	 * @param sql
+	 * @param values
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
-	public SQLQuery<T> createSQLQuery(String queryString,Object obj[]){
-		@SuppressWarnings("unchecked")
-		SQLQuery<T> query=(SQLQuery<T>) getSession().createSQLQuery(queryString);
-		if(obj !=null){ 
-			for (int i = 0; i < obj.length; i++) {
-				query.setParameter(i, obj[i]);
+	public NativeQuery createQuery(String sql,Object values[]){		
+		
+		NativeQuery nativeQuery =getSession().createNativeQuery(sql);
+		
+		if(values!=null){
+			for (int i = 0; i < values.length; i++) {
+				nativeQuery.setParameter(i, values[i]);
 			}
 		}
-		
-		return query;
+		return nativeQuery;
 	}
+	
 	/**
 	 * 创建面向对象的标准查询
 	 * @return
