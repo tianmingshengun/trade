@@ -19,15 +19,16 @@ public class NioTest {
 	public static void main(String[] args) throws Exception {
 		//创建一个客户端通道
 		SocketChannel socketChannel =  SocketChannel.open();
-		//连接远程主机
-		socketChannel.connect(new InetSocketAddress("127.0.0.1",6668));
 		socketChannel.configureBlocking(false);
+		//连接远程主机
+		socketChannel.connect(new InetSocketAddress("127.0.0.1",6669));
+		
 		//声明选择器
 		Selector selector=Selector.open();
 		//将通道注册到选择器上，并指定检测的事件
 		socketChannel.register(selector, SelectionKey.OP_CONNECT);
 		//轮询监测发生的事件
-		 System.out.println("连接成功");
+		/// System.out.println("连接成功");
 		while(true){
 			//查看是否有已经准备就绪的通道，该方法会产生阻塞
 		    int num= selector.select();
@@ -55,8 +56,15 @@ public class NioTest {
 		    		//发送信息
 		    		channel.write(ByteBuffer.wrap("请多关照。。".getBytes()));
 		    		//注册读取事件，用于获取服务端的信息
-		    		channel.register(selector,  SelectionKey.OP_READ);
+		    		channel.register(selector, SelectionKey.OP_READ);
 		    		
+		    	}else if(sk.isReadable()){
+		    		SocketChannel channel=(SocketChannel)sk.channel();
+		    		ByteBuffer buffer = ByteBuffer.allocate(1024); 
+		    		 buffer.clear();  
+		    		channel.read(buffer);
+		    		System.out.println(new String(buffer.array(), 0, buffer.position()));
+		    		buffer.flip();
 		    	}
 		    }
 		}

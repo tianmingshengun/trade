@@ -25,7 +25,7 @@ public class NioSocketServer {
         //创建选择器，用于检测一到多个NIO通道，从而使单个线程可以管理多个通道，减少线程上下文切换带来的资源消耗
         Selector selector = Selector.open(); 
         //创建套接字地址
-        InetSocketAddress address = new InetSocketAddress("127.0.0.1",6668);  
+        InetSocketAddress address = new InetSocketAddress("127.0.0.1",6669);  
         //为该套接字绑定地址
         ss.bind(address);  
         //注册套接字
@@ -45,9 +45,9 @@ public class NioSocketServer {
                 if (sKey.isAcceptable()) {  
                     ServerSocketChannel sc = (ServerSocketChannel) key.channel();  
                     channel = sc.accept();// 接受连接请求  
-                    //channel.write(buffer.wrap(new String("sendddd").getBytes()));
+                    channel.write(buffer.wrap(new String("sendddd").getBytes()));
                     channel.configureBlocking(false);  
-                    channel.register(selector, SelectionKey.OP_READ);  
+                    channel.register(selector, SelectionKey.OP_READ );  
                    
                 } else if (sKey.isReadable()) {  
                     channel = (SocketChannel) sKey.channel();  
