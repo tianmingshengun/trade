@@ -65,6 +65,7 @@ public class NioTest {
 		    		channel.read(buffer);
 		    		System.out.println(new String(buffer.array(), 0, buffer.position()));
 		    		buffer.flip();
+		    		break;
 		    	}
 		    }
 		}

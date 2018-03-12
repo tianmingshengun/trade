@@ -54,16 +54,19 @@ public class NioSocketServer {
                     while (true) {  
                         buffer.clear();  
                         int r = channel.read(buffer);  
-                        if (r <= 0) {  
-                            channel.close();  
-                            System.out.println("接收完毕，断开连接");  
+                        if (r <= 0) {                    
                             break;  
                         }  
                         System.out.println("##" + r + " " + new String(buffer.array(), 0, buffer.position())+"haha");  
                         buffer.flip();  
                     }  
-                      
-                } 
+                    channel.configureBlocking(false);  
+                    channel.register(selector, SelectionKey.OP_WRITE);    
+                }else if(sKey.isWritable()){ 
+                	channel=(SocketChannel)sKey.channel();
+                	channel.write(buffer.wrap(new String("哈哈，我再给你发个消息").getBytes()));
+                	break;
+                }
             }  
         }  
   
